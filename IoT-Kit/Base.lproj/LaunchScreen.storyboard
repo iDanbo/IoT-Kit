@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zFN-lV-nPi">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="nDn-0I-tRR">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fpD-qt-mDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="zFN-lV-nPi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ncc-FG-yF3"/>
+                        <viewControllerLayoutGuide type="bottom" id="slg-Vr-k15"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vfI-Ah-hgB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IoT Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="T2e-BZ-W26">
+                                <rect key="frame" x="112" y="258" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="LHb-of-ghs"/>
+                                    <constraint firstAttribute="height" constant="150" id="bxS-Ye-1rJ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="T2e-BZ-W26" firstAttribute="centerX" secondItem="vfI-Ah-hgB" secondAttribute="centerX" id="Etx-ob-5CZ"/>
+                            <constraint firstItem="T2e-BZ-W26" firstAttribute="centerY" secondItem="vfI-Ah-hgB" secondAttribute="centerY" id="mMh-pb-AUV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-13" y="318"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="IoT Logo.png" width="504" height="504"/>
+    </resources>
+</document>

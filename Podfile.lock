@@ -1,0 +1,14 @@
+PODS:
+  - IoTTicketSwiftAPI (0.0.1):
+    - IoTTicketSwiftAPI/Core (= 0.0.1)
+  - IoTTicketSwiftAPI/Core (0.0.1)
+
+DEPENDENCIES:
+  - IoTTicketSwiftAPI (~> 0.0.1)
+
+SPEC CHECKSUMS:
+  IoTTicketSwiftAPI: 4e0631c99aa2ed06d76bead2f906a0301577e6f2
+
+PODFILE CHECKSUM: fea8a05a7dd724df7615ad6bb1c5872c47cfd2eb
+
+COCOAPODS: 1.2.0
