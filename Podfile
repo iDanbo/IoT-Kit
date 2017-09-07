@@ -5,7 +5,7 @@ target 'IoT-Kit' do
 
   use_frameworks!
 
-  pod 'IoTTicketSwiftAPI', '~> 0.0.1'
+  pod 'IoTTicketSwiftAPI', '~> 0.0.2'
 
   target 'IoT-KitTests' do
     inherit! :search_paths

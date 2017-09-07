@@ -161,6 +161,7 @@ class DeviceTableViewController: UITableViewController {
 
 extension DeviceTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("now")
         guard let location = locations.last else {
             return
         }

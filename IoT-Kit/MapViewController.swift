@@ -19,19 +19,26 @@ class MapViewController: UIViewController {
     var devicesWithLocation = [DeviceWithLocation]()
     let annotation = MKPointAnnotation()
     var myIoT: MyIoT!
+    var geotifications: [GeoPin] = []
     
     var updateCoordinatesTimerValueActive: TimeInterval = 1
     var updateCoordinatesTimerValueNotActive: TimeInterval = 5
     
-    deinit {
-        print("Deinitialized")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
 //        iconView.layer.cornerRadius = 5
 //        iconView.layer.masksToBounds = true
         checkForDatanodes()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addGeofence" {
+            let navigationController = segue.destination as! UINavigationController
+            let vc = navigationController.viewControllers.first as! AddGeofenceTableViewController
+            vc.delegate = self
+            vc.myIoT = myIoT
+        }
     }
     
     func getAllDevices(completion: @escaping (([Device]) -> ())) {
@@ -101,7 +108,7 @@ class MapViewController: UIViewController {
                                 break
                             }
                         }
-                        print("DeivceId with location datanodes: ", deviceId)
+                        print("Deivce name with location datanodes: ", device.name)
                         group.leave()
                         
                     }
@@ -141,11 +148,17 @@ class MapViewController: UIViewController {
     func updateCoordinates(for device: DeviceWithLocation) {
         getDeviceCoordinates(device: device) { (coordinate) in
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 2, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseInOut], animations: {
-                    device.coordinate = coordinate
-                })
-//                device.coordinate = coordinate
-//                self.addPolyline(for: device)
+                // Check if the last coordinate is different
+                if device.coordinates.last != coordinate {
+                    UIView.animate(withDuration: 2, delay: 0, options: [.beginFromCurrentState, .allowUserInteraction, .curveEaseInOut], animations: {
+                        device.coordinate = coordinate
+                    })
+                } else {
+                    device.idleCounter += 1
+                    if (device.idleCounter > 5 && device.isActive) {
+                        device.isActive = false
+                    }
+                }
             }
         }
     }
@@ -153,8 +166,8 @@ class MapViewController: UIViewController {
     
     func getDeviceCoordinates(device: DeviceWithLocation, completion: @escaping (CLLocationCoordinate2D) -> ()) {
         let deviceId = device.deviceId!
-        var latitude = Double()
-        var longitude = Double()
+//        var latitude = Double()
+//        var longitude = Double()
          self.myIoT.client.readDatanodes(deviceId: deviceId, criteria: ["latitude", "longitude"]) { [weak self] (datanodeRead, error) in
             guard let strongSelf = self else { return }
             if error != nil {
@@ -162,8 +175,8 @@ class MapViewController: UIViewController {
                 return
             }
             if let datanodeRead = datanodeRead {
-                latitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.latitude.rawValue)!
-                longitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.longitude.rawValue)!
+                guard let latitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.latitude.rawValue) else { print("No Latitude coordinate"); return}
+                guard let longitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.longitude.rawValue) else { print("No Longitude coordinate"); return}
                 let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 completion(coordinate)
             }
@@ -197,23 +210,37 @@ class MapViewController: UIViewController {
         }
         
     }
+    
+    func add(geotification: GeoPin) {
+        geotifications.append(geotification)
+        mapView.addAnnotation(geotification)
+        addRadiusOverlay(forGeotification: geotification)
+        updateGeotificationsCount()
+    }
+    func updateGeotificationsCount() {
+        title = "Track Devices (\(geotifications.count))"
+        navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 20)
+    }
+    func addRadiusOverlay(forGeotification geotification: GeoPin) {
+        mapView?.add(MKCircle(center: geotification.coordinate, radius: geotification.radius))
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            
-            renderer.strokeColor = UIColor.blue
-            renderer.lineWidth = 3
-            return renderer
+        if overlay is MKCircle {
+            let circleRenderer = MKCircleRenderer(overlay: overlay)
+            circleRenderer.lineWidth = 1.0
+            circleRenderer.strokeColor = .purple
+            circleRenderer.fillColor = UIColor.purple.withAlphaComponent(0.4)
+            return circleRenderer
         }
-        return MKOverlayRenderer()
+        return MKOverlayRenderer(overlay: overlay)
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let location = view.annotation as! DeviceWithLocation
+        guard let location = view.annotation as? DeviceWithLocation else { return }
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         if #available(iOS 10.0, *) {
             location.mapItem().openInMaps(launchOptions: launchOptions)
@@ -243,15 +270,42 @@ extension MapViewController: MKMapViewDelegate {
         if let annotationView = annotationView {
             // Configure your annotation view here
             annotationView.canShowCallout = true
-            if let deviceAnnotation = annotation as? DeviceWithLocation {
+            if let deviceAnnotation = annotationView.annotation as? DeviceWithLocation {
                 annotationView.image = deviceAnnotation.pinImage
+            }
+            if let geoPinAnnotation = annotation as? GeoPin {
+                annotationView.image = UIImage(named: "addPin")
             }
         }
         
         return annotationView
     }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let deviceAnnotation = view.annotation as? DeviceWithLocation {
+            mapView.setCenter(deviceAnnotation.coordinate, animated: true)
+//            deviceAnnotation.coordinateObserver = deviceAnnotation.observe(\.coordinate) { object, change in
+//            }
+        }
+    }
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if let deviceAnnotation = view.annotation as? DeviceWithLocation {
+            deviceAnnotation.coordinateObserver?.invalidate()
+            deviceAnnotation.coordinateObserver = nil
+        }
+    }
 }
 
+extension MapViewController: AddGeotificationsViewControllerDelegate {
+    func addGeotificationViewController(controller: AddGeofenceTableViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: EventType) {
+        controller.dismiss(animated: true, completion: nil)
+        // 1
+        let geotification = GeoPin(coordinate: coordinate, radius: radius, identifier: identifier, note: note, eventType: eventType)
+        add(geotification: geotification)
+        // 2
+//        startMonitoring(geotification: geotification)
+//        saveAllGeotifications()
+    }
+}
 
 extension CLLocationCoordinate2D: Equatable {}
 

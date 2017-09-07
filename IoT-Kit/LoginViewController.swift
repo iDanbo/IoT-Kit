@@ -67,12 +67,11 @@ class LoginViewController: UIViewController {
 
     func toggleButton(notification: Notification? = nil) {
         loginButton.isEnabled = !loginButton.isEnabled
-        print(loginButton.isEnabled)
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
         loginButton.isEnabled = false
-        loginSucess { deviceDetails in
+        loginSuccess { deviceDetails in
             self.myIoT.deviceDetails = deviceDetails
             UserDefaults.standard.set(self.username.text, forKey: "username")
             UserDefaults.standard.set(self.password.text, forKey: "password")
@@ -93,7 +92,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    func loginSucess(completed: @escaping (Device) -> ()) {
+    func loginSuccess(completed: @escaping (Device) -> ()) {
         // Check if username is empty
         guard let username = self.username.text, username != "" else {
             toggleButton()
@@ -109,7 +108,7 @@ class LoginViewController: UIViewController {
         // Instantiate IoT-Ticket client
         myIoT.client = IoTTicketClient(baseURL: MyIoT.baseURL, username: username, password: password)
         // Create a device
-        let deviceName = UIDevice.current.name
+        let deviceName = UIDevice.current.name.replacingOccurrences(of: "\u{2019}", with: "'")
         let device = Device(name: deviceName, manufacturer: "Apple", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
         // Check if device with same specification exists
         myIoT.client.getDevices() { deviceDetailsArray, error in

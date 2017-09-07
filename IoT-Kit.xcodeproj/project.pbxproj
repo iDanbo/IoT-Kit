@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		177CC619A897AD19B039BDE5 /* Pods_IoT_KitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2A90C833B16B4574E28412 /* Pods_IoT_KitUITests.framework */; };
 		27CCF9896BBCCD2E9C24BF5F /* Pods_IoT_KitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A6DD99B6C45CF4A9B7181 /* Pods_IoT_KitTests.framework */; };
+		C53977781F5D2EA90008CA33 /* GeoPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53977771F5D2EA90008CA33 /* GeoPin.swift */; };
+		C539777C1F5D30580008CA33 /* AddGeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */; };
 		C55EB46B1EEECB6000B82D7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */; };
 		C55EB46D1EEECB6000B82D7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */; };
 		C55EB4701EEECB6000B82D7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55EB46E1EEECB6000B82D7E /* Main.storyboard */; };
@@ -56,6 +58,8 @@
 		7C2A90C833B16B4574E28412 /* Pods_IoT_KitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_KitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26FF791D58622CFC9F4E452 /* Pods_IoT_Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28A6DD99B6C45CF4A9B7181 /* Pods_IoT_KitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IoT_KitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53977771F5D2EA90008CA33 /* GeoPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPin.swift; sourceTree = "<group>"; };
+		C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeofenceTableViewController.swift; sourceTree = "<group>"; };
 		C55EB4671EEECB6000B82D7E /* IoT-Kit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IoT-Kit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */,
 				C585EDAB1F261BE200F6FFCA /* DevicesLocations.swift */,
 				C585EDA91F261AD900F6FFCA /* MapViewController.swift */,
+				C53977771F5D2EA90008CA33 /* GeoPin.swift */,
+				C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */,
 				C5969D781F4C60C7001F3214 /* Utilities.swift */,
 				C55EB4711EEECB6000B82D7E /* Assets.xcassets */,
 				C55EB46E1EEECB6000B82D7E /* Main.storyboard */,
@@ -515,8 +521,10 @@
 				C585EDAA1F261AD900F6FFCA /* MapViewController.swift in Sources */,
 				C5E5B3621F3B495A007F2126 /* CheckForDatanodesOperation.swift in Sources */,
 				C5969D791F4C60C7001F3214 /* Utilities.swift in Sources */,
+				C53977781F5D2EA90008CA33 /* GeoPin.swift in Sources */,
 				C5E5B3651F3B4988007F2126 /* AsyncOperation.swift in Sources */,
 				C55EB46B1EEECB6000B82D7E /* AppDelegate.swift in Sources */,
+				C539777C1F5D30580008CA33 /* AddGeofenceTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
