@@ -24,7 +24,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         NotificationCenter.default.addObserver(self, selector: #selector(toggleButton(notification:)), name: NSNotification.Name(rawValue: "toggleButton"), object: nil)
     }
@@ -155,6 +156,18 @@ class LoginViewController: UIViewController {
                     completed(deviceDetails)
                 }
             }
+        }
+    }
+    func keyboardWillShow(sender: NSNotification) {
+        if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.view.frame.origin.y -= keyboardRectangle.height / 3
+        }
+    }
+    func keyboardWillHide(sender: NSNotification) {
+        if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.view.frame.origin.y += keyboardRectangle.height / 3
         }
     }
     

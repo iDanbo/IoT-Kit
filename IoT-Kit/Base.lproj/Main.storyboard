@@ -176,15 +176,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiM-Fx-Hkp">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiM-Fx-Hkp">
                                                     <rect key="frame" x="24" y="11" width="61" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AKv-Pe-c6W">
                                                     <rect key="frame" x="217" y="21" width="150" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="tkE-S7-VQz"/>
+                                                    </constraints>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-Sg-C7x">
                                                     <rect key="frame" x="346" y="21" width="21" height="21"/>
@@ -195,10 +197,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="AKv-Pe-c6W" secondAttribute="bottom" constant="12.5" id="155-35-hiH"/>
+                                                <constraint firstItem="CiM-Fx-Hkp" firstAttribute="leading" secondItem="vao-tg-zuR" secondAttribute="leadingMargin" constant="16" id="1b4-9A-K2v"/>
+                                                <constraint firstItem="AKv-Pe-c6W" firstAttribute="centerY" secondItem="CiM-Fx-Hkp" secondAttribute="centerY" id="CIk-tk-QDk"/>
                                                 <constraint firstItem="4Xl-Sg-C7x" firstAttribute="top" secondItem="vao-tg-zuR" secondAttribute="top" constant="21" id="Eun-rd-YfC"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Xl-Sg-C7x" secondAttribute="trailing" constant="8" id="VHC-XI-sqv"/>
                                                 <constraint firstItem="AKv-Pe-c6W" firstAttribute="top" secondItem="vao-tg-zuR" secondAttribute="topMargin" constant="13" id="exo-rZ-qa5"/>
-                                                <constraint firstItem="AKv-Pe-c6W" firstAttribute="leading" secondItem="vao-tg-zuR" secondAttribute="leadingMargin" constant="209" id="kR4-hZ-66E"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="AKv-Pe-c6W" secondAttribute="trailing" id="q2t-8x-38y"/>
                                                 <constraint firstAttribute="bottom" secondItem="4Xl-Sg-C7x" secondAttribute="bottom" constant="1.5" id="zwN-xW-6i8"/>
                                             </constraints>
@@ -211,15 +214,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACK-qm-swK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACK-qm-swK">
                                                     <rect key="frame" x="24" y="11" width="36" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-yp-Q5e">
                                                     <rect key="frame" x="217" y="21" width="150" height="2"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="g7L-Cm-z7o"/>
+                                                    </constraints>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0x-iA-jLK">
                                                     <rect key="frame" x="346" y="21" width="21" height="21"/>
@@ -230,12 +235,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="K0x-iA-jLK" secondAttribute="trailing" constant="8" id="7ET-Yu-axr"/>
-                                                <constraint firstItem="bsU-yp-Q5e" firstAttribute="leading" secondItem="8Ov-vF-GBb" secondAttribute="leadingMargin" constant="209" id="GDa-sz-0kV"/>
                                                 <constraint firstItem="bsU-yp-Q5e" firstAttribute="top" secondItem="8Ov-vF-GBb" secondAttribute="topMargin" constant="13" id="Gmr-uS-tqn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bsU-yp-Q5e" secondAttribute="trailing" id="K4M-ps-F80"/>
                                                 <constraint firstAttribute="bottom" secondItem="K0x-iA-jLK" secondAttribute="bottom" constant="1.5" id="MUh-As-0FZ"/>
+                                                <constraint firstItem="bsU-yp-Q5e" firstAttribute="centerY" secondItem="ACK-qm-swK" secondAttribute="centerY" id="Xkm-j3-rwn"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="bsU-yp-Q5e" secondAttribute="bottom" constant="12.5" id="fZQ-aV-fap"/>
                                                 <constraint firstItem="K0x-iA-jLK" firstAttribute="top" secondItem="8Ov-vF-GBb" secondAttribute="top" constant="21" id="noH-7f-g43"/>
+                                                <constraint firstItem="ACK-qm-swK" firstAttribute="leading" secondItem="8Ov-vF-GBb" secondAttribute="leadingMargin" constant="16" id="xm3-Yo-X8X"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
