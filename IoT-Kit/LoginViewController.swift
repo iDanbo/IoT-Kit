@@ -24,13 +24,18 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        NotificationCenter.default.addObserver(self, selector: #selector(toggleButton(notification:)), name: NSNotification.Name(rawValue: "toggleButton"), object: nil)
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         let iotColor = UIColor.init(red: 32/255, green: 140/255, blue: 202/255, alpha: 1)
         
         username.layer.cornerRadius = username.frame.height / 2
@@ -112,7 +117,7 @@ class LoginViewController: UIViewController {
         let deviceName = UIDevice.current.name.replacingOccurrences(of: "\u{2019}", with: "'")
         let device = Device(name: deviceName, manufacturer: "Apple", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
         // Check if device with same specification exists
-        myIoT.client.getDevices() { deviceDetailsArray, error in
+        myIoT.client.getDevices(limit: 100) { deviceDetailsArray, error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.toggleButton()
@@ -159,9 +164,14 @@ class LoginViewController: UIViewController {
         }
     }
     func keyboardWillShow(sender: NSNotification) {
-        if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.view.frame.origin.y -= keyboardRectangle.height / 3
+        let viewY = self.view.frame.origin.y
+        print(self.view.frame.origin.y)
+        if viewY >= 0 {
+            if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                print("here")
+                let keyboardRectangle = keyboardFrame.cgRectValue
+                self.view.frame.origin.y -= keyboardRectangle.height / 3
+            }
         }
     }
     func keyboardWillHide(sender: NSNotification) {

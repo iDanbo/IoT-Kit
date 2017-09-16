@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yY7-L3-Ing">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yY7-L3-Ing">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-BoldItalic.ttf">
+            <string>Roboto-BoldItalic</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="buA-Pq-Saz">
@@ -83,7 +97,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="aw8-ds-hAw" firstAttribute="centerX" secondItem="iRC-dr-LO3" secondAttribute="centerX" id="AB9-uW-zMj"/>
-                            <constraint firstItem="6IS-Xs-k5b" firstAttribute="centerX" secondItem="iRC-dr-LO3" secondAttribute="centerX" id="Wlh-Lc-lP6"/>
                             <constraint firstItem="3BI-c9-eSD" firstAttribute="centerY" secondItem="iRC-dr-LO3" secondAttribute="centerY" id="ZDD-7p-rDc"/>
                             <constraint firstItem="6IS-Xs-k5b" firstAttribute="centerX" secondItem="iRC-dr-LO3" secondAttribute="centerX" id="bNa-lm-ifD"/>
                             <constraint firstItem="3BI-c9-eSD" firstAttribute="centerX" secondItem="iRC-dr-LO3" secondAttribute="centerX" id="d8c-PR-qFi"/>
@@ -398,6 +411,274 @@
             </objects>
             <point key="canvasLocation" x="2446" y="36"/>
         </scene>
+        <!--Intro Page View Controller-->
+        <scene sceneID="Tm6-Er-54k">
+            <objects>
+                <pageViewController storyboardIdentifier="IntroView" autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="formSheet" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="wUe-XJ-EqX" customClass="IntroPageViewController" customModule="IoT_Kit" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5PE-6s-z0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2300" y="-1657"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="oA7-tP-2kk">
+            <objects>
+                <viewController storyboardIdentifier="TutorialView" modalPresentationStyle="formSheet" id="zVD-SQ-w51" customClass="TutorialViewController" customModule="IoT_Kit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6kF-Yd-UI1"/>
+                        <viewControllerLayoutGuide type="bottom" id="iEb-jQ-SIo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cYI-Qg-M8y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiJ-bf-dWg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.0021584490314126015" green="0.17030218243598938" blue="0.30955839157104492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="wUe-XJ-EqX" kind="embed" id="bR8-L6-aZU"/>
+                                </connections>
+                            </containerView>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Q4U-zn-ulY">
+                                <rect key="frame" x="168" y="610" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.039215686274509803" green="0.29019607843137252" blue="0.40000000000000002" alpha="0.25053510273972601" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.039215686274509803" green="0.29019607843137252" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iEb-jQ-SIo" firstAttribute="top" secondItem="Q4U-zn-ulY" secondAttribute="bottom" constant="20" id="3mo-qp-mWb"/>
+                            <constraint firstAttribute="trailing" secondItem="kiJ-bf-dWg" secondAttribute="trailing" id="OhN-Ma-pbC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q4U-zn-ulY" secondAttribute="trailing" constant="152" id="V3J-3y-R3L"/>
+                            <constraint firstItem="kiJ-bf-dWg" firstAttribute="top" secondItem="6kF-Yd-UI1" secondAttribute="bottom" id="XUg-E1-LLL"/>
+                            <constraint firstItem="iEb-jQ-SIo" firstAttribute="top" secondItem="kiJ-bf-dWg" secondAttribute="bottom" id="bgc-o2-iaT"/>
+                            <constraint firstItem="kiJ-bf-dWg" firstAttribute="leading" secondItem="cYI-Qg-M8y" secondAttribute="leading" id="pW4-41-31d"/>
+                            <constraint firstItem="Q4U-zn-ulY" firstAttribute="leading" secondItem="cYI-Qg-M8y" secondAttribute="leadingMargin" constant="152" id="svb-2v-Klo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="kiJ-bf-dWg" id="cOM-om-oTY"/>
+                        <outlet property="pageControl" destination="Q4U-zn-ulY" id="Thl-Zh-dS1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1PY-7t-L8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3289" y="-1666"/>
+        </scene>
+        <!--First View Controller-->
+        <scene sceneID="xPd-0X-JL0">
+            <objects>
+                <viewController storyboardIdentifier="FirstViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KWs-Kn-VGu" customClass="FirstViewController" customModule="IoT_Kit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xWh-iw-g71"/>
+                        <viewControllerLayoutGuide type="bottom" id="1t7-6S-c4G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DNd-pK-EyV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8n-AL-Blo">
+                                <rect key="frame" x="87.5" y="80" width="200" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="5Hj-lq-Fp3"/>
+                                    <constraint firstAttribute="width" constant="200" id="FkK-D1-4tE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="31"/>
+                                <color key="textColor" red="0.97647058823529409" green="0.99215686274509807" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro1" translatesAutoresizingMaskIntoConstraints="NO" id="Jgd-Jp-bws">
+                                <rect key="frame" x="16" y="-206.5" width="343" height="1080"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IoT-Ticket" translatesAutoresizingMaskIntoConstraints="NO" id="yhX-3O-RGd">
+                                <rect key="frame" x="64.5" y="144" width="246" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="246" id="X4s-nz-QKW"/>
+                                    <constraint firstAttribute="height" constant="57" id="zZe-d1-GHW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Internet of Things Office Suit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iUY-F6-ujM">
+                                <rect key="frame" x="16" y="528.5" width="343" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="7A4-z8-oSq"/>
+                                    <constraint firstAttribute="height" constant="32" id="qhf-Zw-bUw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="20"/>
+                                <color key="textColor" red="0.97647058819999999" green="0.99215686270000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0078431372549019607" green="0.12156862745098039" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="iUY-F6-ujM" firstAttribute="top" secondItem="Jgd-Jp-bws" secondAttribute="bottom" constant="-345" id="3cF-fU-xtH"/>
+                            <constraint firstItem="Jgd-Jp-bws" firstAttribute="top" secondItem="j8n-AL-Blo" secondAttribute="bottom" constant="-318.5" id="HjG-BQ-wDH"/>
+                            <constraint firstItem="Jgd-Jp-bws" firstAttribute="leading" secondItem="DNd-pK-EyV" secondAttribute="leadingMargin" id="MqK-Dk-ONb"/>
+                            <constraint firstItem="Jgd-Jp-bws" firstAttribute="centerX" secondItem="DNd-pK-EyV" secondAttribute="centerX" id="SFJ-DR-oiP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jgd-Jp-bws" secondAttribute="trailing" id="V2f-CE-PI4"/>
+                            <constraint firstItem="Jgd-Jp-bws" firstAttribute="top" secondItem="yhX-3O-RGd" secondAttribute="bottom" constant="-407.5" id="Wk7-5f-V4G"/>
+                            <constraint firstItem="yhX-3O-RGd" firstAttribute="centerX" secondItem="DNd-pK-EyV" secondAttribute="centerX" id="dbE-a1-d1T"/>
+                            <constraint firstItem="j8n-AL-Blo" firstAttribute="centerX" secondItem="DNd-pK-EyV" secondAttribute="centerX" id="gGr-BT-mOC"/>
+                            <constraint firstItem="Jgd-Jp-bws" firstAttribute="centerY" secondItem="DNd-pK-EyV" secondAttribute="centerY" id="kdn-y9-boA"/>
+                            <constraint firstItem="iUY-F6-ujM" firstAttribute="centerX" secondItem="Jgd-Jp-bws" secondAttribute="centerX" id="vaz-tQ-PxH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="introImageView" destination="Jgd-Jp-bws" id="wjL-wg-VUG"/>
+                        <outlet property="iotTicketLogo" destination="yhX-3O-RGd" id="jA4-xN-Zan"/>
+                        <outlet property="officeSuitLabel" destination="iUY-F6-ujM" id="DNU-WA-FdL"/>
+                        <outlet property="welcomLabel" destination="j8n-AL-Blo" id="bAq-NJ-cxT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obq-Ct-Ka8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="-832.53373313343332"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="oZP-9s-YZg">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vFn-jL-XAd" customClass="SecondViewController" customModule="IoT_Kit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TMg-9e-n4b"/>
+                        <viewControllerLayoutGuide type="bottom" id="3DB-l8-ale"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nx6-k4-RAW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IoTDevices" translatesAutoresizingMaskIntoConstraints="NO" id="5Kw-ho-f26">
+                                <rect key="frame" x="14" y="172" width="347" height="323"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="323" id="JAl-77-I2d"/>
+                                    <constraint firstAttribute="width" constant="347" id="e4g-tU-Gz3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect your devices to our complete platform" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtg-yJ-ElN">
+                                <rect key="frame" x="34" y="87" width="307" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="307" id="B7K-go-BJz"/>
+                                    <constraint firstAttribute="height" constant="57" id="aAD-sq-qcs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="22"/>
+                                <color key="textColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and develop your applications " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-mr-0ye">
+                                <rect key="frame" x="34" y="503" width="307" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="Cl4-K9-LLN"/>
+                                    <constraint firstAttribute="width" constant="307" id="eFF-uT-Ywd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="22"/>
+                                <color key="textColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in minutes." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeB-aP-WLz">
+                                <rect key="frame" x="34" y="534" width="307" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="307" id="gPL-uD-gfM"/>
+                                    <constraint firstAttribute="height" constant="46" id="zbt-Qn-sab"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="22"/>
+                                <color key="textColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0021584490314126015" green="0.17030218243598938" blue="0.30955839157104492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aeB-aP-WLz" firstAttribute="centerX" secondItem="OOo-mr-0ye" secondAttribute="centerX" id="EOC-qw-YVx"/>
+                            <constraint firstItem="5Kw-ho-f26" firstAttribute="centerX" secondItem="Nx6-k4-RAW" secondAttribute="centerX" id="QKx-Jw-vTX"/>
+                            <constraint firstItem="aeB-aP-WLz" firstAttribute="top" secondItem="OOo-mr-0ye" secondAttribute="bottom" constant="-15" id="W4a-Dt-vjy"/>
+                            <constraint firstItem="wtg-yJ-ElN" firstAttribute="centerX" secondItem="Nx6-k4-RAW" secondAttribute="centerX" id="b4y-sz-S2q"/>
+                            <constraint firstItem="OOo-mr-0ye" firstAttribute="centerX" secondItem="Nx6-k4-RAW" secondAttribute="centerX" id="crG-eY-zkP"/>
+                            <constraint firstItem="OOo-mr-0ye" firstAttribute="top" secondItem="5Kw-ho-f26" secondAttribute="bottom" constant="8" id="hVf-bL-mHR"/>
+                            <constraint firstItem="5Kw-ho-f26" firstAttribute="centerY" secondItem="Nx6-k4-RAW" secondAttribute="centerY" id="k0w-by-ZOu"/>
+                            <constraint firstItem="5Kw-ho-f26" firstAttribute="top" secondItem="wtg-yJ-ElN" secondAttribute="bottom" constant="28" id="yKj-Yy-g5C"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mld-dV-5lu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2421.5999999999999" y="-833.43328335832086"/>
+        </scene>
+        <!--Third View Controller-->
+        <scene sceneID="eeC-Wg-GY0">
+            <objects>
+                <viewController storyboardIdentifier="ThirdViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mny-R0-Lfl" customClass="ThirdViewController" customModule="IoT_Kit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lnd-Df-xtT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ae7-Ks-wek"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bFV-IN-xlJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your personal data wll be uploaded to our IoT-Ticket Cloud" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MML-zx-hm7">
+                                <rect key="frame" x="25" y="64" width="325" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="itb-Ek-bGw"/>
+                                    <constraint firstAttribute="width" constant="325" id="tPg-so-2QC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="21"/>
+                                <color key="textColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmh-SK-cxQ">
+                                <rect key="frame" x="122.5" y="315" width="130" height="37"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="privacyButtonPressed:" destination="Mny-R0-Lfl" eventType="touchUpInside" id="yTd-0y-MV5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We would like You to get familiar with our" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-ji-NkD">
+                                <rect key="frame" x="45" y="204" width="285" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="285" id="G1W-Ct-RtA"/>
+                                    <constraint firstAttribute="height" constant="51" id="sAJ-rB-MUG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="21"/>
+                                <color key="textColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjd-U7-F4j">
+                                <rect key="frame" x="132" y="525" width="110" height="37"/>
+                                <color key="backgroundColor" red="0.97607225179672241" green="0.99203687906265259" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="h2a-Dj-6jk"/>
+                                    <constraint firstAttribute="height" constant="37" id="mun-l4-z0F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-BoldItalic" family="Roboto" pointSize="21"/>
+                                <state key="normal" title="Got it!">
+                                    <color key="titleColor" red="0.0021584490314126015" green="0.17030218243598938" blue="0.30955839157104492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="gotItButtonPressed:" destination="Mny-R0-Lfl" eventType="touchUpInside" id="aEE-7B-Lw4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0021584490314126015" green="0.17030218243598938" blue="0.30955839157104492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ae7-Ks-wek" firstAttribute="top" secondItem="zjd-U7-F4j" secondAttribute="bottom" constant="105" id="6Bu-Lm-gGf"/>
+                            <constraint firstItem="Rmh-SK-cxQ" firstAttribute="centerY" secondItem="bFV-IN-xlJ" secondAttribute="centerY" id="6JV-ea-tHp"/>
+                            <constraint firstItem="MML-zx-hm7" firstAttribute="centerX" secondItem="bFV-IN-xlJ" secondAttribute="centerX" id="G5a-FQ-Xdt"/>
+                            <constraint firstItem="MML-zx-hm7" firstAttribute="top" secondItem="lnd-Df-xtT" secondAttribute="bottom" constant="44" id="Uhn-az-HjL"/>
+                            <constraint firstItem="Rmh-SK-cxQ" firstAttribute="centerX" secondItem="bFV-IN-xlJ" secondAttribute="centerX" id="bKp-y5-0qc"/>
+                            <constraint firstItem="Spc-ji-NkD" firstAttribute="top" secondItem="MML-zx-hm7" secondAttribute="bottom" constant="41" id="h93-wR-TvM"/>
+                            <constraint firstItem="zjd-U7-F4j" firstAttribute="centerX" secondItem="bFV-IN-xlJ" secondAttribute="centerX" id="hEg-6r-bcn"/>
+                            <constraint firstItem="Spc-ji-NkD" firstAttribute="centerX" secondItem="bFV-IN-xlJ" secondAttribute="centerX" id="hGh-VD-vhO"/>
+                            <constraint firstItem="Rmh-SK-cxQ" firstAttribute="top" secondItem="Spc-ji-NkD" secondAttribute="bottom" constant="60" id="mGe-3A-k9u"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gotItButton" destination="zjd-U7-F4j" id="X6i-QQ-eIF"/>
+                        <outlet property="privacyPolicyButton" destination="Rmh-SK-cxQ" id="hFf-nR-q6W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUk-Vi-6X9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3192.8000000000002" y="-833.43328335832086"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gQh-4B-tgQ">
             <objects>
@@ -518,10 +799,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-h9-un4">
-                                                    <rect key="frame" x="-0.5" y="0.0" width="375" height="456.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="456.5"/>
                                                 </mapView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addPin" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-JW-O36">
-                                                    <rect key="frame" x="149.5" y="190.5" width="75" height="75"/>
+                                                    <rect key="frame" x="150" y="190.5" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="1pv-aO-ZuW"/>
                                                         <constraint firstAttribute="height" constant="75" id="UgK-bv-FIR"/>
@@ -659,8 +940,11 @@
     </scenes>
     <resources>
         <image name="IoT Logo.png" width="504" height="504"/>
+        <image name="IoT-Ticket" width="1682" height="408"/>
+        <image name="IoTDevices" width="513" height="521"/>
         <image name="addPin" width="75" height="75"/>
         <image name="deviceTabBarIcon" width="25" height="25"/>
+        <image name="intro1" width="1319" height="1080"/>
         <image name="trackDevicesTabBar" width="25" height="25"/>
     </resources>
 </document>

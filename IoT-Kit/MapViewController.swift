@@ -32,6 +32,10 @@ class MapViewController: UIViewController {
         checkForDatanodes()
     }
     
+    deinit {
+        print("MapViewController deinit")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addGeofence" {
             let navigationController = segue.destination as! UINavigationController
@@ -108,7 +112,6 @@ class MapViewController: UIViewController {
                                 break
                             }
                         }
-                        print("Deivce name with location datanodes: ", device.name)
                         group.leave()
                         
                     }
@@ -120,6 +123,7 @@ class MapViewController: UIViewController {
                 print("Elapsed \(currentTime-time)s")
                 strongSelf.refreshButton.isEnabled = true
                 completed?()
+                self?.devicesWithLocation.forEach{ print("Device Location Array:", $0.name)}
             }
             
             

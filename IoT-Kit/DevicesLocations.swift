@@ -48,11 +48,7 @@ class DeviceWithLocation: Device, MKAnnotation {
         return manufacturer
     }
 
-    var coordinates = [CLLocationCoordinate2D]() {
-        didSet {
-            print("called coordinates")
-        }
-    }
+    var coordinates = [CLLocationCoordinate2D]()
     
     dynamic var isActive: Bool = true
     

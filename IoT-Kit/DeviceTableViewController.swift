@@ -59,6 +59,13 @@ class DeviceTableViewController: UITableViewController {
         refreshControl?.superview?.sendSubview(toBack: refreshControl!)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if (!UserDefaults.standard.bool(forKey: "showedIntro")) {
+            let introViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialView")
+            present(introViewController, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func gpsSwitch(_ sender: UISwitch) {
         if sender.isOn {
             locationManager.allowsBackgroundLocationUpdates = true
@@ -91,9 +98,9 @@ class DeviceTableViewController: UITableViewController {
     }
     
     @IBAction func logOutAction(_ sender: UIBarButtonItem) {
-        if let bundle = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundle)
-        }
+            UserDefaults.standard.removeObject(forKey: "username")
+            UserDefaults.standard.removeObject(forKey: "password")
+            UserDefaults.standard.removeObject(forKey: "deviceDetails")
         if let nvc = tabBarController?.viewControllers![1] as? UINavigationController {
             let svc = nvc.viewControllers.first as! MapViewController
             svc.devicesWithLocation.forEach{$0.timer?.invalidate(); $0.timer = nil; $0.observation?.invalidate(); $0.observation = nil}
@@ -102,7 +109,6 @@ class DeviceTableViewController: UITableViewController {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let login = mainStoryboard.instantiateViewController(withIdentifier: "LoginController") as! LoginViewController
             login.myIoT = MyIoT()
-            print("here")
             UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
             present(login, animated: true, completion: nil)
         } else {
