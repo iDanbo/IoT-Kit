@@ -178,7 +178,7 @@ class MapViewController: UIViewController {
                 print(error!)
                 return
             }
-            if let datanodeRead = datanodeRead {
+            if let datanodeRead = datanodeRead?.datanodeReads {
                 guard let latitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.latitude.rawValue) else { print("No Latitude coordinate"); return}
                 guard let longitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.longitude.rawValue) else { print("No Longitude coordinate"); return}
                 let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
@@ -187,7 +187,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    func extractDatanodeValue(for datanodes: [DatanodeRead], name datanodeName: String) -> Double? {
+    func extractDatanodeValue(for datanodes: [Datanodes], name datanodeName: String) -> Double? {
         for datanode in datanodes where (datanode.name.caseInsensitiveCompare(datanodeName) == .orderedSame) {
             guard let value = datanode.values?.first?.value else { return nil }
             return Double(value)

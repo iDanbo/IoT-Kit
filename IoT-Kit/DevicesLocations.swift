@@ -63,6 +63,10 @@ class DeviceWithLocation: Device, MKAnnotation {
         fatalError("init(coder:) has not been implemented")
     }
     
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
     @available(iOS 10.0, *)
     func mapItem() -> MKMapItem {
         let placemark = MKPlacemark(coordinate: coordinate)
