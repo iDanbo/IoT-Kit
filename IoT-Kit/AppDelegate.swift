@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         var deviceData: Data?
         
-        if let data = userDefaults.object(forKey: "deviceDetails") as? Data {
+        if let data = userDefaults.data(forKey: "deviceDetails") {
             // if already logged in then redirect to MainViewController
             deviceData = data
             initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! UITabBarController
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let deviceTableViewController = navigationController.viewControllers.first as! DeviceTableViewController
             let username = userDefaults.object(forKey: "username") as! String
             let password = userDefaults.object(forKey: "password") as! String
-            let deviceDetails = NSKeyedUnarchiver.unarchiveObject(with: deviceData!) as! Device
+            let deviceDetails = try! JSONDecoder().decode(Device.self, from: deviceData!)
             let myIoTClient = IoTTicketClient(baseURL: MyIoT.baseURL, username: username, password: password)
             
             deviceTableViewController.myIoT = MyIoT(client: myIoTClient, deviceDetails: deviceDetails)

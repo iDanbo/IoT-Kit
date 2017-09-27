@@ -20,6 +20,8 @@ class ThirdViewController: UIViewController {
     
 
     @IBAction func privacyButtonPressed(_ sender: UIButton) {
+        let privacyURL = URL(string: "https://www.iot-ticket.com/privacy-policy")!
+        UIApplication.shared.open(privacyURL, options: [:], completionHandler: nil)
         UserDefaults.standard.set(true, forKey: "showedIntro")
     }
     @IBAction func gotItButtonPressed(_ sender: UIButton) {

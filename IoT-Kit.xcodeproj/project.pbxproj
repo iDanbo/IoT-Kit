@@ -25,8 +25,11 @@
 		C51984431F62CEE200BB6D63 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C51984371F62CEE200BB6D63 /* Roboto-Thin.ttf */; };
 		C51984441F62CEE200BB6D63 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C51984381F62CEE200BB6D63 /* Roboto-Italic.ttf */; };
 		C51984471F66A0F800BB6D63 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51984461F66A0F800BB6D63 /* TutorialViewController.swift */; };
+		C520FE9A1F6FEED7001A10F9 /* DeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C520FE991F6FEED7001A10F9 /* DeviceTableViewController.swift */; };
 		C53977781F5D2EA90008CA33 /* GeoPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53977771F5D2EA90008CA33 /* GeoPin.swift */; };
 		C539777C1F5D30580008CA33 /* AddGeofenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */; };
+		C551A8F01F700B6D0083E8F9 /* MapSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C551A8EF1F700B6D0083E8F9 /* MapSettingsViewController.swift */; };
+		C5579CF61F72531100A2C786 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5579CF51F72531100A2C786 /* MapView.swift */; };
 		C55EB46B1EEECB6000B82D7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */; };
 		C55EB46D1EEECB6000B82D7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */; };
 		C55EB4701EEECB6000B82D7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55EB46E1EEECB6000B82D7E /* Main.storyboard */; };
@@ -37,7 +40,6 @@
 		C585EDAA1F261AD900F6FFCA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C585EDA91F261AD900F6FFCA /* MapViewController.swift */; };
 		C585EDAC1F261BE200F6FFCA /* DevicesLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C585EDAB1F261BE200F6FFCA /* DevicesLocations.swift */; };
 		C5969D791F4C60C7001F3214 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5969D781F4C60C7001F3214 /* Utilities.swift */; };
-		C59B8C791EEED36400EC5B13 /* DeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B8C781EEED36400EC5B13 /* DeviceTableViewController.swift */; };
 		C5B160A31F62971A00EB36A4 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B160A21F62971A00EB36A4 /* IntroPageViewController.swift */; };
 		C5E5B3621F3B495A007F2126 /* CheckForDatanodesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E5B3611F3B495A007F2126 /* CheckForDatanodesOperation.swift */; };
 		C5E5B3651F3B4988007F2126 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E5B3641F3B4988007F2126 /* AsyncOperation.swift */; };
@@ -46,6 +48,7 @@
 		C5EFA5181EF15820008A1BE3 /* IoT Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EFA5131EF15820008A1BE3 /* IoT Logo.png */; };
 		C5EFA5191EF15820008A1BE3 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EFA5141EF15820008A1BE3 /* location@2x.png */; };
 		C5EFA51A1EF15820008A1BE3 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EFA5151EF15820008A1BE3 /* location@3x.png */; };
+		C5F2AD371F71357F00057167 /* iconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2AD361F71357F00057167 /* iconView.swift */; };
 		C5FCB4521F6A9E7600140167 /* intro1.png in Resources */ = {isa = PBXBuildFile; fileRef = C5FCB3D91F6A98EB00140167 /* intro1.png */; };
 		C5FCB4531F6A9E7600140167 /* intro10.png in Resources */ = {isa = PBXBuildFile; fileRef = C5FCB3DA1F6A98EB00140167 /* intro10.png */; };
 		C5FCB4541F6A9E7600140167 /* intro100.png in Resources */ = {isa = PBXBuildFile; fileRef = C5FCB3DB1F6A98EB00140167 /* intro100.png */; };
@@ -212,8 +215,11 @@
 		C51984371F62CEE200BB6D63 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C51984381F62CEE200BB6D63 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		C51984461F66A0F800BB6D63 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		C520FE991F6FEED7001A10F9 /* DeviceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewController.swift; sourceTree = "<group>"; };
 		C53977771F5D2EA90008CA33 /* GeoPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPin.swift; sourceTree = "<group>"; };
 		C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeofenceTableViewController.swift; sourceTree = "<group>"; };
+		C551A8EF1F700B6D0083E8F9 /* MapSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsViewController.swift; sourceTree = "<group>"; };
+		C5579CF51F72531100A2C786 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = "IoT-Kit/View/MapView.swift"; sourceTree = SOURCE_ROOT; };
 		C55EB4671EEECB6000B82D7E /* IoT-Kit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IoT-Kit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +236,6 @@
 		C585EDA91F261AD900F6FFCA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C585EDAB1F261BE200F6FFCA /* DevicesLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesLocations.swift; sourceTree = "<group>"; };
 		C5969D781F4C60C7001F3214 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		C59B8C781EEED36400EC5B13 /* DeviceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceTableViewController.swift; path = "IoT-Kit/DeviceTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C5B160A21F62971A00EB36A4 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		C5E5B3611F3B495A007F2126 /* CheckForDatanodesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForDatanodesOperation.swift; sourceTree = "<group>"; };
 		C5E5B3641F3B4988007F2126 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
@@ -239,6 +244,7 @@
 		C5EFA5131EF15820008A1BE3 /* IoT Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IoT Logo.png"; sourceTree = "<group>"; };
 		C5EFA5141EF15820008A1BE3 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		C5EFA5151EF15820008A1BE3 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
+		C5F2AD361F71357F00057167 /* iconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconView.swift; sourceTree = "<group>"; };
 		C5FCB3D91F6A98EB00140167 /* intro1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = intro1.png; path = "IoT-Kit/IntroView/introImageView/intro1.png"; sourceTree = SOURCE_ROOT; };
 		C5FCB3DA1F6A98EB00140167 /* intro10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro10.png; sourceTree = "<group>"; };
 		C5FCB3DB1F6A98EB00140167 /* intro100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro100.png; sourceTree = "<group>"; };
@@ -451,15 +457,11 @@
 		C55EB4691EEECB6000B82D7E /* IoT-Kit */ = {
 			isa = PBXGroup;
 			children = (
-				C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */,
-				C5EFA50E1EF153ED008A1BE3 /* MyIoT.swift */,
-				C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */,
-				C59B8C781EEED36400EC5B13 /* DeviceTableViewController.swift */,
-				C585EDAB1F261BE200F6FFCA /* DevicesLocations.swift */,
-				C585EDA91F261AD900F6FFCA /* MapViewController.swift */,
-				C53977771F5D2EA90008CA33 /* GeoPin.swift */,
-				C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */,
+				C5E8D8571F6FED0A0024AEBF /* Model */,
+				C5E8D8591F6FED360024AEBF /* View */,
+				C5E8D8581F6FED2B0024AEBF /* Controllers */,
 				C5969D781F4C60C7001F3214 /* Utilities.swift */,
+				C55EB46A1EEECB6000B82D7E /* AppDelegate.swift */,
 				C5038ABC1F67BBBF00405F19 /* IntroView */,
 				C55EB46E1EEECB6000B82D7E /* Main.storyboard */,
 				C55EB4731EEECB6000B82D7E /* LaunchScreen.storyboard */,
@@ -495,6 +497,37 @@
 				C5E5B3641F3B4988007F2126 /* AsyncOperation.swift */,
 			);
 			path = Operations;
+			sourceTree = "<group>";
+		};
+		C5E8D8571F6FED0A0024AEBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5EFA50E1EF153ED008A1BE3 /* MyIoT.swift */,
+				C585EDAB1F261BE200F6FFCA /* DevicesLocations.swift */,
+				C53977771F5D2EA90008CA33 /* GeoPin.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5E8D8581F6FED2B0024AEBF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C551A8EF1F700B6D0083E8F9 /* MapSettingsViewController.swift */,
+				C585EDA91F261AD900F6FFCA /* MapViewController.swift */,
+				C520FE991F6FEED7001A10F9 /* DeviceTableViewController.swift */,
+				C55EB46C1EEECB6000B82D7E /* LoginViewController.swift */,
+				C539777B1F5D30580008CA33 /* AddGeofenceTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C5E8D8591F6FED360024AEBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5579CF51F72531100A2C786 /* MapView.swift */,
+				C5F2AD361F71357F00057167 /* iconView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C5EFA5101EF15820008A1BE3 /* images */ = {
@@ -741,7 +774,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1100,10 +1133,11 @@
 			files = (
 				C5038D3D1F681A8400405F19 /* SecondViewController.swift in Sources */,
 				C5038AC01F67F18400405F19 /* FirstViewController.swift in Sources */,
+				C551A8F01F700B6D0083E8F9 /* MapSettingsViewController.swift in Sources */,
+				C5F2AD371F71357F00057167 /* iconView.swift in Sources */,
 				C585EDAC1F261BE200F6FFCA /* DevicesLocations.swift in Sources */,
 				C5EFA50F1EF153ED008A1BE3 /* MyIoT.swift in Sources */,
 				C55EB46D1EEECB6000B82D7E /* LoginViewController.swift in Sources */,
-				C59B8C791EEED36400EC5B13 /* DeviceTableViewController.swift in Sources */,
 				C5B160A31F62971A00EB36A4 /* IntroPageViewController.swift in Sources */,
 				C585EDAA1F261AD900F6FFCA /* MapViewController.swift in Sources */,
 				C51984471F66A0F800BB6D63 /* TutorialViewController.swift in Sources */,
@@ -1111,6 +1145,8 @@
 				C5969D791F4C60C7001F3214 /* Utilities.swift in Sources */,
 				C53977781F5D2EA90008CA33 /* GeoPin.swift in Sources */,
 				C5038ABE1F67BD5200405F19 /* ThirdViewController.swift in Sources */,
+				C520FE9A1F6FEED7001A10F9 /* DeviceTableViewController.swift in Sources */,
+				C5579CF61F72531100A2C786 /* MapView.swift in Sources */,
 				C5E5B3651F3B4988007F2126 /* AsyncOperation.swift in Sources */,
 				C55EB46B1EEECB6000B82D7E /* AppDelegate.swift in Sources */,
 				C539777C1F5D30580008CA33 /* AddGeofenceTableViewController.swift in Sources */,

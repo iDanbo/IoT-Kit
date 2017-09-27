@@ -27,7 +27,7 @@ class DeviceTableViewController: UITableViewController {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.delegate = self
-        manager.requestAlwaysAuthorization()
+        manager.requestWhenInUseAuthorization()
         manager.pausesLocationUpdatesAutomatically = true
         manager.activityType = CLActivityType.other
         return manager
@@ -68,11 +68,13 @@ class DeviceTableViewController: UITableViewController {
     
     @IBAction func gpsSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            locationManager.allowsBackgroundLocationUpdates = true
+//            locationManager.allowsBackgroundLocationUpdates = true
+            registerBackgroundTask()
             locationManager.startUpdatingLocation()
         } else {
             locationManager.stopUpdatingLocation()
-            locationManager.allowsBackgroundLocationUpdates = false
+            endBackgroundTask()
+//            locationManager.allowsBackgroundLocationUpdates = false
         }
     }
     
@@ -87,9 +89,10 @@ class DeviceTableViewController: UITableViewController {
     @IBAction func accelerometerSwitch(_ sender: UISwitch) {
         if sender.isOn {
             motionManager.startDeviceMotionUpdates(using: .xArbitraryZVertical, to: OperationQueue.current!) { (deviceMotion, error) in
-                let rotationY = Datanode(name: "rotation Y", path: "Rotation", v: deviceMotion?.attitude.roll)
-                let rotationX = Datanode(name: "rotation X", path: "Rotation", v: deviceMotion?.attitude.pitch)
-                let rotationZ = Datanode(name: "rotation Z", path: "Rotation", v: deviceMotion?.attitude.yaw)
+                guard let deviceMotion = deviceMotion else { return }
+                let rotationY = Datanode(name: "rotation Y", path: "Rotation", v: deviceMotion.attitude.roll)
+                let rotationX = Datanode(name: "rotation X", path: "Rotation", v: deviceMotion.attitude.pitch)
+                let rotationZ = Datanode(name: "rotation Z", path: "Rotation", v: deviceMotion.attitude.yaw)
                 self.myIoT.client.writeDatanode(deviceId: self.myIoT.deviceDetails.deviceId!, datanodes: [rotationX, rotationY, rotationZ])
             }
         } else {
@@ -163,11 +166,22 @@ class DeviceTableViewController: UITableViewController {
         }
     }
     
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+        assert(backgroundTask != UIBackgroundTaskInvalid)
+    }
+
+    func endBackgroundTask() {
+        print("Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = UIBackgroundTaskInvalid
+    }
 }
 
 extension DeviceTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("now")
         guard let location = locations.last else {
             return
         }
@@ -178,10 +192,11 @@ extension DeviceTableViewController: CLLocationManagerDelegate {
         }
         let speed = Datanode(name: "Speed", path: "Location", v: speedInKmPerHour, unit: "km/h")
         switch UIApplication.shared.applicationState {
+        case .active:
+            print("active")
         case .background:
-            print("in background")
+             print("Background time remaining = \(UIApplication.shared.backgroundTimeRemaining) seconds")
             print(manager.desiredAccuracy)
-            manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         default:
             manager.desiredAccuracy = kCLLocationAccuracyBest
         }

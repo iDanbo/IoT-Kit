@@ -14,12 +14,14 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var iconView: UIView!
     
-    var devicesWithLocation = [DeviceWithLocation]()
+    var observer: NSKeyValueObservation?
+    
+    @objc dynamic var devicesWithLocation = [DeviceWithLocation]()
     let annotation = MKPointAnnotation()
     var myIoT: MyIoT!
     var geotifications: [GeoPin] = []
+    
     
     var updateCoordinatesTimerValueActive: TimeInterval = 1
     var updateCoordinatesTimerValueNotActive: TimeInterval = 5
@@ -27,8 +29,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-//        iconView.layer.cornerRadius = 5
-//        iconView.layer.masksToBounds = true
         checkForDatanodes()
     }
     
@@ -43,12 +43,24 @@ class MapViewController: UIViewController {
             vc.delegate = self
             vc.myIoT = myIoT
         }
+        if segue.identifier == "toMapSettings" {
+            let navigationController = segue.destination as! UINavigationController
+            let vc = navigationController.viewControllers.first as! MapSettingsViewController
+            vc.mvc = self
+            vc.devicesWithLocation = devicesWithLocation
+            vc.selectedSegment = Int(mapView.mapType.rawValue)
+        }
     }
     
     func getAllDevices(completion: @escaping (([Device]) -> ())) {
         myIoT.client.getDevices(limit: 300) { (deviceList, error) in
             if let error = error {
-                print(error)
+                switch error {
+                case IoTServerError.QuotaViolation: self.createAlert(title: "Can't send a request", message: "Exceeded max. quota limit")
+                case IoTServerError.UncaughtException: self.createAlert(title: "Error", message: "Uncaught error")
+                case IoTServerError.NoDataInResponse: self.createAlert(title: "No internet connection", message: "There is no data in response, please check your connection")
+                default: self.createAlert(title: "Error", message: "Uknown error")
+                }
             }
             if let deviceList = deviceList {
                 var allDevices = [Device]()
@@ -178,9 +190,9 @@ class MapViewController: UIViewController {
                 print(error!)
                 return
             }
-            if let datanodeRead = datanodeRead?.datanodeReads {
-                guard let latitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.latitude.rawValue) else { print("No Latitude coordinate"); return}
-                guard let longitude = strongSelf.extractDatanodeValue(for: datanodeRead, name: Coordindate.longitude.rawValue) else { print("No Longitude coordinate"); return}
+            if let datanodes = datanodeRead?.datanodes {
+                guard let latitude = strongSelf.extractDatanodeValue(for: datanodes, name: Coordindate.latitude.rawValue) else { print("No Latitude coordinate"); return}
+                guard let longitude = strongSelf.extractDatanodeValue(for: datanodes, name: Coordindate.longitude.rawValue) else { print("No Longitude coordinate"); return}
                 let coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 completion(coordinate)
             }
@@ -228,6 +240,14 @@ class MapViewController: UIViewController {
     func addRadiusOverlay(forGeotification geotification: GeoPin) {
         mapView?.add(MKCircle(center: geotification.coordinate, radius: geotification.radius))
     }
+    @IBAction func currentLocation(_ sender: UIButton) {
+        guard let coordinate = mapView.userLocation.location?.coordinate else {
+            createAlert(title: "Enable Location", message: "Open \"Your Device\" tab and enable location")
+            return
+        }
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 100, 100)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -241,16 +261,6 @@ extension MapViewController: MKMapViewDelegate {
             return circleRenderer
         }
         return MKOverlayRenderer(overlay: overlay)
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation as? DeviceWithLocation else { return }
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        if #available(iOS 10.0, *) {
-            location.mapItem().openInMaps(launchOptions: launchOptions)
-        } else {
-            return
-        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -268,7 +278,10 @@ extension MapViewController: MKMapViewDelegate {
         }
         else {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
-            annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 30, height: 30)))
+            let image = UIImage(named: "carIcon")
+            button.setImage(image, for: .normal)
+            annotationView?.rightCalloutAccessoryView = button
         }
         
         if let annotationView = annotationView {
@@ -284,6 +297,18 @@ extension MapViewController: MKMapViewDelegate {
         
         return annotationView
     }
+    
+    // Get directions to the device
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let location = view.annotation as? DeviceWithLocation else { return }
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        if #available(iOS 10.0, *) {
+            location.mapItem().openInMaps(launchOptions: launchOptions)
+        } else {
+            return
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let deviceAnnotation = view.annotation as? DeviceWithLocation {
             mapView.setCenter(deviceAnnotation.coordinate, animated: true)

@@ -25,8 +25,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
@@ -57,6 +55,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 0.7, initialSpringVelocity: 15.0, options: .curveEaseIn, animations: {
             self.IoTCenterY.constant = -160
@@ -72,7 +72,11 @@ class LoginViewController: UIViewController {
     }
 
     func toggleButton(notification: Notification? = nil) {
-        loginButton.isEnabled = !loginButton.isEnabled
+        if (!loginButton.isEnabled) {
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
+                self.loginButton.isEnabled = true
+            })
+        }
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
@@ -81,7 +85,8 @@ class LoginViewController: UIViewController {
             self.myIoT.deviceDetails = deviceDetails
             UserDefaults.standard.set(self.username.text, forKey: "username")
             UserDefaults.standard.set(self.password.text, forKey: "password")
-            UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: deviceDetails), forKey: "deviceDetails")
+            let encodedDeviceDetails = try! JSONEncoder().encode(deviceDetails)
+            UserDefaults.standard.set(encodedDeviceDetails, forKey: "deviceDetails")
             DispatchQueue.main.async {
                
                 self.performSegue(withIdentifier: "toMain", sender: self)
@@ -101,7 +106,9 @@ class LoginViewController: UIViewController {
     func loginSuccess(completed: @escaping (Device) -> ()) {
         // Check if username is empty
         guard let username = self.username.text, username != "" else {
+            print(loginButton.isEnabled)
             toggleButton()
+            print(loginButton.isEnabled)
             self.createAlert(title: "Username empty", message: "Enter a username!")
             return
         }
@@ -115,7 +122,7 @@ class LoginViewController: UIViewController {
         myIoT.client = IoTTicketClient(baseURL: MyIoT.baseURL, username: username, password: password)
         // Create a device
         let deviceName = UIDevice.current.name.replacingOccurrences(of: "\u{2019}", with: "'")
-        let device = Device(name: deviceName, manufacturer: "Apple", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
+        let device = Device(name: deviceName, manufacturer: "Wapice", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
         // Check if device with same specification exists
         myIoT.client.getDevices(limit: 100) { deviceDetailsArray, error in
             if let error = error {
@@ -124,6 +131,7 @@ class LoginViewController: UIViewController {
                     switch error {
                     case IoTServerError.PermissionNotSufficient: self.createAlert(title: "Can't login", message: "Wrong username/password")
                     case IoTServerError.QuotaViolation: self.createAlert(title: "Quota limit", message: "Exceeded max. quota limit")
+                    case IoTServerError.NoDataInResponse: self.createAlert(title: "No internet connection", message: "There is no data in response, please check your connection")
                     default: self.createAlert(title: "Error", message: "Uknown error")
                     }
                 }
@@ -154,6 +162,7 @@ class LoginViewController: UIViewController {
                     switch error {
                     case IoTServerError.QuotaViolation: self.createAlert(title: "Can't register device", message: "Exceeded max. quota limit")
                     case IoTServerError.UncaughtException: self.createAlert(title: "Error", message: "Uncaught error")
+                    case IoTServerError.NoDataInResponse: self.createAlert(title: "No internet connection", message: "There is no data in response, please check your connection")
                     default: self.createAlert(title: "Error", message: "Uknown error")
                     }
                 }
@@ -175,10 +184,10 @@ class LoginViewController: UIViewController {
         }
     }
     func keyboardWillHide(sender: NSNotification) {
-        if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            self.view.frame.origin.y += keyboardRectangle.height / 3
-        }
+//        if let keyboardFrame: NSValue = sender.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+            self.view.frame.origin.y = 0
+//        }
     }
     
 }

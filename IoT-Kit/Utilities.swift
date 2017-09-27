@@ -6,8 +6,8 @@
 //  Copyright © 2017 Daniel Egerev. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import MapKit
 
 // Method to displat allert
 extension UIViewController {
@@ -18,5 +18,13 @@ extension UIViewController {
             
         })
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MKMapView {
+    func zoomToUserLocation() {
+        guard let coordinate = userLocation.location?.coordinate else { return }
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 100, 100)
+        setRegion(region, animated: true)
     }
 }

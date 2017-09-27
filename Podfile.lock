@@ -1,14 +1,14 @@
 PODS:
-  - IoTTicketSwiftAPI (0.0.2):
-    - IoTTicketSwiftAPI/Core (= 0.0.2)
-  - IoTTicketSwiftAPI/Core (0.0.2)
+  - IoTTicketSwiftAPI (0.0.6):
+    - IoTTicketSwiftAPI/Core (= 0.0.6)
+  - IoTTicketSwiftAPI/Core (0.0.6)
 
 DEPENDENCIES:
-  - IoTTicketSwiftAPI (~> 0.0.2)
+  - IoTTicketSwiftAPI (~> 0.0.6)
 
 SPEC CHECKSUMS:
-  IoTTicketSwiftAPI: e67f5b186a35ab8e44b87803ee617e0dd1c03081
+  IoTTicketSwiftAPI: 6ce720a1fa85137f41d9204720628c16f7b5ed3e
 
-PODFILE CHECKSUM: cb362fbd2ce2ce8dbd768960f4691da0ce6f444a
+PODFILE CHECKSUM: 45f0760195c7036754b921b6b697034cd8ea3b15
 
 COCOAPODS: 1.3.1
