@@ -44,7 +44,6 @@ class MapSettingsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedSegment)
         mapTypeSegmentController.selectedSegmentIndex = selectedSegment
         mvc.observer = mvc.observe(\.devicesWithLocation, changeHandler: { [unowned self] (object, change) in
             self.devicesWithLocation = object.devicesWithLocation

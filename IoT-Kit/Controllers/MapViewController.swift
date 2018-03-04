@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     var observer: NSKeyValueObservation?
     
     @objc dynamic var devicesWithLocation = [DeviceWithLocation]()
-    let annotation = MKPointAnnotation()
+//    let annotation = MKPointAnnotation()
     var myIoT: MyIoT!
     var geotifications: [GeoPin] = []
     

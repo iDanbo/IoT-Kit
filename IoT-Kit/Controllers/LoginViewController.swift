@@ -73,9 +73,7 @@ class LoginViewController: UIViewController {
 
     func toggleButton(notification: Notification? = nil) {
         if (!loginButton.isEnabled) {
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
                 self.loginButton.isEnabled = true
-            })
         }
     }
     
@@ -106,9 +104,7 @@ class LoginViewController: UIViewController {
     func loginSuccess(completed: @escaping (Device) -> ()) {
         // Check if username is empty
         guard let username = self.username.text, username != "" else {
-            print(loginButton.isEnabled)
             toggleButton()
-            print(loginButton.isEnabled)
             self.createAlert(title: "Username empty", message: "Enter a username!")
             return
         }
@@ -122,7 +118,7 @@ class LoginViewController: UIViewController {
         myIoT.client = IoTTicketClient(baseURL: MyIoT.baseURL, username: username, password: password)
         // Create a device
         let deviceName = UIDevice.current.name.replacingOccurrences(of: "\u{2019}", with: "'")
-        let device = Device(name: deviceName, manufacturer: "Wapice", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
+        let device = Device(name: deviceName, manufacturer: "Apple", type: UIDevice.current.model, deviceDescription: "Device registered with iOS application")
         // Check if device with same specification exists
         myIoT.client.getDevices(limit: 100) { deviceDetailsArray, error in
             if let error = error {
@@ -159,6 +155,7 @@ class LoginViewController: UIViewController {
         func registerDevice() {
             myIoT.client.registerDevice(device: device) { deviceDetails, loginError in
                 if let error = loginError {
+                    self.toggleButton()
                     switch error {
                     case IoTServerError.QuotaViolation: self.createAlert(title: "Can't register device", message: "Exceeded max. quota limit")
                     case IoTServerError.UncaughtException: self.createAlert(title: "Error", message: "Uncaught error")
